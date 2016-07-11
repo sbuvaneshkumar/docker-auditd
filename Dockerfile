@@ -1,25 +1,14 @@
-#FROM registry.access.redhat.com/rhel7
-FROM centos
+FROM registry.access.redhat.com/rhel7
 
 MAINTAINER Nicolas Dordet <nicolas@redhat.com>
 
-ARG SUBSCRIPTION_USER
-ARG SUBSCRIPTION_PASSWORD
-ARG SUBSCRIPTION_POOL
-ARG HOSTNAME
-
+#Not needed if you run it on Atomic
 #RUN subscription-manager register --username=$SUBSCRIPTION_USER --password=$SUBSCRIPTION_PASSWORD
 #RUN subscription-manager attach --pool=$SUBSCRIPTION_POOL
 #RUN subscription-manager repos --disable='*'
 #RUN subscription-manager repos --enable='rhel-7-server-rpms' --enable='rhel-7-server-extras-rpms' --#enable='rhel-7-server-optional-rpms'
 
-#RUN yum install git -y
-#RUN yum -y install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm
-#RUN yum --enablerepo=epel install ansible -y
-
 RUN yum install audit -y
-
-
 
 #Ansible run
 #RUN git clone https://github.com/redhat-cip/rcip-openshift-ansible
@@ -34,15 +23,14 @@ RUN yum install audit -y
 RUN yum clean all
 #RUN rm -rf /etc/ansible/hosts
 #RUN rm -rf /rcip-openshift-ansible
-#RUN echo "127.0.0.1 monitoring-client" > /etc/hosts
 
-#VOLUME [ "/etc/origin/node", "/var/lib/origin" ]
-
-#TODO : detach subscriptions
-
+#Not needed if you run it on Atomic
+#Detach subscriptions
+#RUN subscription-manager remove --all
+#RUN subscription-manager unregister
+#RUN subscription-manager clean
 
 #EXPOSE 8000
 #RUN sleep 10000
 ADD scripts/run.sh /
 ENTRYPOINT ["/run.sh"]
-
