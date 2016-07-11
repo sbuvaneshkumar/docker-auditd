@@ -8,5 +8,5 @@ docker build \
 --build-arg SUBSCRIPTION_PASSWORD=password \
 --build-arg SUBSCRIPTION_POOL=poolid \
 --build-arg HOSTNAME=master1.ose-exemple.com \
--t docker.io/auditd/atomic-auditd:v1 \
+-t docker.io/ndox/auditd:v1 \
 .
