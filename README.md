@@ -1,4 +1,7 @@
-# rcip-docker-openshift-monitoring
+# docker auditd
+
+Strongly inspired by rcip-docker-openshift-monitoring
+
 Docker build using rcip-openshift-ansible repo in order to build an auditd docker image
 
 ## What
