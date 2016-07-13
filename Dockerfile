@@ -8,4 +8,4 @@ RUN yum install audit -y && yum clean all
 ADD configs/audit.rules /etc/audit/
 ADD scripts/run.sh /
 RUN /sbin/auditctl -R /etc/audit/audit.rules
-ENTRYPOINT ["/run.sh"]
+#ENTRYPOINT ["/run.sh"]
