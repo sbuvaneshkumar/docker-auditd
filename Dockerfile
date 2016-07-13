@@ -1,36 +1,11 @@
 FROM registry.access.redhat.com/rhel7
+#FROM centos
 
 MAINTAINER Nicolas Dordet <nicolas@redhat.com>
 
-#Not needed if you run it on Atomic
-#RUN subscription-manager register --username=$SUBSCRIPTION_USER --password=$SUBSCRIPTION_PASSWORD
-#RUN subscription-manager attach --pool=$SUBSCRIPTION_POOL
-#RUN subscription-manager repos --disable='*'
-#RUN subscription-manager repos --enable='rhel-7-server-rpms' --enable='rhel-7-server-extras-rpms' --#enable='rhel-7-server-optional-rpms'
+RUN yum install audit -y && yum clean all
 
-RUN yum install audit -y
-
-#Ansible run
-#RUN git clone https://github.com/redhat-cip/rcip-openshift-ansible
-#RUN echo "127.0.0.1 $HOSTNAME" > /etc/hosts
-#RUN mkdir /etc/ansible/facts.d
-#RUN echo '{"is_atomic": false}' > /etc/ansible/facts.d/system.fact
-#COPY ansible_hosts /etc/ansible/hosts
-#ADD ansible_hosts /etc/ansible/hosts
-#RUN ansible-playbook rcip-openshift-ansible/post.yml --extra-vars dockerbuild=true --tags monitoring-#client,graph-client,log-client -l $HOSTNAME --connection=local
-
-#Clean image
-RUN yum clean all
-#RUN rm -rf /etc/ansible/hosts
-#RUN rm -rf /rcip-openshift-ansible
-
-#Not needed if you run it on Atomic
-#Detach subscriptions
-#RUN subscription-manager remove --all
-#RUN subscription-manager unregister
-#RUN subscription-manager clean
-
-#EXPOSE 8000
-#RUN sleep 10000
+ADD config/audit.rules /etc/audit/
 ADD scripts/run.sh /
+#RUN /sbin/auditctl -R /etc/audit/audit.rules
 ENTRYPOINT ["/run.sh"]
