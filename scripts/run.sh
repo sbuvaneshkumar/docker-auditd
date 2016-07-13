@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec /sbin/auditd -f
+exec /sbin/auditd -n
