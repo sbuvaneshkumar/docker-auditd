@@ -9,5 +9,6 @@ ADD configs/audit.rules /etc/audit/
 ADD scripts/run.sh /
 #RUN /sbin/auditctl -R /etc/audit/audit.rules
 #ENTRYPOINT ["/run.sh"]
-CMD ["/sbin/auditd","-n"]
+#CMD ["/sbin/auditd","-n"]
+CMD ["/usr/bin/ping","localhost"]
 
