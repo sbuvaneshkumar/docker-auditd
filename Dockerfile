@@ -3,6 +3,8 @@ FROM registry.access.redhat.com/rhel7
 
 MAINTAINER Nicolas Dordet <nicolas@redhat.com>
 
+RUN subscription-manager repos --enable='rhel-7-server-rpms' --enable='rhel-7-server-extras-rpms' --enable='rhel-7-server-optional-rpms'
+
 RUN yum install audit ping -y && yum clean all
 
 ADD configs/audit.rules /etc/audit/
