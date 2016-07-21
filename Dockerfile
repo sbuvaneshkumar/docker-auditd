@@ -3,7 +3,7 @@ FROM registry.access.redhat.com/rhel7
 
 MAINTAINER Nicolas Dordet <nicolas@redhat.com>
 
-RUN subscription-manager repos --enable='rhel-7-server-rpms' --enable='rhel-7-server-extras-rpms' --enable='rhel-7-server-optional-rpms'
+RUN yum -y install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm
 
 RUN yum install audit ping -y && yum clean all
 
