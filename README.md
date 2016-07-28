@@ -69,5 +69,5 @@ TODO
 ## Step 5 : Run your image
 
 ```bash
-service atomic-auditd start
+service docker-auditd start
  ```
