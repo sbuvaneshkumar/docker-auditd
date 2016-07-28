@@ -25,11 +25,7 @@ cat dockerfile_start.sh
 
 docker build \
 --no-cache \
---build-arg SUBSCRIPTION_USER=user \
---build-arg SUBSCRIPTION_PASSWORD=password \
---build-arg SUBSCRIPTION_POOL=poolid \
---build-arg HOSTNAME=master1.ose-example.com \
--t ndox/atomic-auditd:v1 \
+-t ndox/docker-auditd:v1 \
 .
  ```
 
@@ -43,34 +39,34 @@ bash dockerfile_start.sh
 Save in a tar file
 ```bash
 docker ps
-docker save ndox/atomic-auditd > /tmp/atomic-auditd.tar
+docker save docker.io/docker-auditd > /tmp/docker-auditd.tar
  ```
 
 Or on Docker hub
 
 ```bash
-docker tag <imageID> docker.io/ndox/atomic-auditd
+docker tag <imageID> docker.io/ndox/docker-auditd
 docker login --username user --email user@email.com docker.io
-docker push docker.io/ndox/atomic-auditd
+docker push docker.io/ndox/docker-auditd
  ```
 
-## Step 4 : Deploy your image
+## Step 4 : Deploy your image (here on atomic nodes of OSE)
 
 Copy the image on your nodes
 ```bash
-scp /tmp/atomic-auditd.tar master1.ose-example.com:/tmp/
+scp /tmp/docker-auditd.tar master1.ose-example.com:/tmp/
  ```
 From you node, import and tag your image
 ```bash
-docker load < atomic-auditd.tar
+docker load < docker-auditd.tar
 docker images
-docker tag <imageID> ndox/atomic-auditd
+docker tag <imageID> docker.io/docker-auditd
  ```
 
 Or from Docker hub
 
 ```bash
-docker pull docker.io/ndox/atomic-auditd
+docker pull docker.io/ndox/docker-auditd
  ```
 
 
