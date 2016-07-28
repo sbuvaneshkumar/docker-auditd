@@ -6,18 +6,9 @@ Docker build using rcip-openshift-ansible repo in order to build an auditd docke
 
 ## What
 The repository provide a Dockerfile in order to build an auditd docker image. For example on Atomic host we can't setup packages and tools needed to run inside a docker container.
-This image includes sensu-client, collectd, logstash (setuped by the rcip-openshift-ansible playbook)
+This image includes auditd.
 
-  [1] : https://github.com/redhat-cip/rcip-openshift-ansible
-
-## Step 1 : Ansible inventory
-Copy your ansible inventory file (used during the openshift setup) or use the ansible_hosts.example
-
-```bash
-ansible_hosts
- ```
-
-## Step 2 : Build your image
+## Step 1 : Build your image
 
 Edit the dockerfile_start.sh and change the HOSTNAME to match a node in every groups (masters, nodes, etcd ...)
 ```bash
@@ -34,7 +25,7 @@ And run your build
 bash dockerfile_start.sh
  ```
 
-## Step 3 : Export your image
+## Step 2 : Export your image
 
 Save in a tar file
 ```bash
@@ -50,7 +41,7 @@ docker login --username user --email user@email.com docker.io
 docker push docker.io/ndox/docker-auditd
  ```
 
-## Step 4 : Deploy your image (here on atomic nodes of OSE)
+## Step 3 : Deploy your image (here on atomic nodes of OSE)
 
 Copy the image on your nodes
 ```bash
@@ -68,6 +59,11 @@ Or from Docker hub
 ```bash
 docker pull docker.io/ndox/docker-auditd
  ```
+## Step 4 : Create your service
+
+```bash
+TODO
+ ```
 
 
 ## Step 5 : Run your image
@@ -75,7 +71,3 @@ docker pull docker.io/ndox/docker-auditd
 ```bash
 service atomic-auditd start
  ```
-
-The service declaration is push by the rcip-openshift-ansible [2] during the post.yml playbook
-
-  [2] : https://github.com/redhat-cip/rcip-openshift-ansible/blob/master/roles/common/templates/etc/systemd/system/openshift-monitoring-client.service.j2
