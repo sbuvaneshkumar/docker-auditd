@@ -2,5 +2,5 @@
 
 docker build \
 --no-cache \
--t ndox/auditd:v1 \
+-t ndox/docker-auditd:v1 \
 .
