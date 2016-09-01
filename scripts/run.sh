@@ -1,3 +1,3 @@
 #!/bin/bash
-
-exec /sbin/auditd -n
+echo "Starting Auditd"
+exec /sbin/auditd -f -n
