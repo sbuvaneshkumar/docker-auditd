@@ -1,4 +1,4 @@
-#FROM registry.access.redhat.com/rhel7
+FROM registry.access.redhat.com/rhel7
 FROM centos
 
 MAINTAINER Nicolas Dordet <nicolas@redhat.com>
