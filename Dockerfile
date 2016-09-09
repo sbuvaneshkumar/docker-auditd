@@ -8,6 +8,6 @@ ADD configs/* /etc/audit/
 ADD scripts/run.sh /
 
 RUN setcap cap_net_admin,cap_net_raw,cap_audit_write,cap_audit_control+p /sbin/auditd
-RUN /sbin/auditctl -R /etc/audit/audit.rules
+#RUN /sbin/auditctl -R /etc/audit/audit.rules
 ENTRYPOINT ["/run.sh"]
 
