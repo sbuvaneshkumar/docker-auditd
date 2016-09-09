@@ -2,4 +2,4 @@
 echo "Starting Auditd"
 
 exec /sbin/auditd -n
-exec /sbin/auditctl -R /etc/audit/audit.rules
+exec /sbin/auditctl -R /etc/audit/rules.d/audit.rules
