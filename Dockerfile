@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/rhel7:latest
+FROM registry.access.redhat.com/rhel7
 
 MAINTAINER Nicolas Dordet <nicolas@redhat.com>
 
