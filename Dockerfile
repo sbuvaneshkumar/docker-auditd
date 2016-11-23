@@ -4,7 +4,7 @@ MAINTAINER Nicolas Dordet <nicolas@redhat.com>
 
 RUN yum install audit -y && yum clean all
 
-RUN mkdir -p /data/audit/
+RUN mkdir -p /data/audit && chmod 777 /data/audit
 VOLUME /data
 ADD configs/custom.rules /data/audit/
 #ADD configs/custom.rules /etc/audit/rules.d/
