@@ -6,11 +6,11 @@ RUN yum install audit -y && yum clean all
 
 #RUN mkdir -p /data/audit && chmod 777 /data/audit
 #ADD configs/custom.rules /data/audit/
-ADD configs/custom.rules /etc/audit/rules.d/
-ADD configs/custom.rules /
+COPY configs/custom.rules /etc/audit/rules.d/
+COPY configs/custom.rules /
 ADD scripts/run.sh /
 
-RUN setcap cap_net_admin,cap_net_raw,cap_audit_write,cap_audit_control+p /sbin/auditd
+#RUN setcap cap_net_admin,cap_net_raw,cap_audit_write,cap_audit_control+p /sbin/auditd
 #RUN /sbin/auditctl -R /etc/audit/audit.rules
 ENTRYPOINT ["/run.sh"]
 
