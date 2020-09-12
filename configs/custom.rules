@@ -1,4 +1,6 @@
 #Put your rules here
 -D
-
+-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat  -S rmdir -k delete
+-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat  -S rmdir -k delete
+-F dir=/opt/jenkins/
 -a task,never
